@@ -10,6 +10,8 @@ namespace DbTest.Configurations
         {
             builder.HasKey(s => s.Id);
 
+            builder.Property(s => s.Id).HasColumnName("StocksId");
+
             builder.HasOne(s => s.Company)
                    .WithMany(c => c.Stocks)
                    .HasForeignKey(s => s.CompanyId)

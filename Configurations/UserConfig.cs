@@ -10,6 +10,8 @@ namespace DbTest.Configurations
         {
             builder.HasKey(u => u.Id);
 
+            builder.Property(u => u.Id).HasColumnName("UserId");
+
             builder.HasMany(u => u.Stocks)
                    .WithOne(s => s.User);
         }

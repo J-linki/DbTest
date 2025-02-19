@@ -1,5 +1,8 @@
-﻿namespace DbTest.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace DbTest.Models
 {
+    [NotMapped]
     public class ErrorViewModel
     {
         public string? RequestId { get; set; }
