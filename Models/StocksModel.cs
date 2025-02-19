@@ -2,6 +2,7 @@
 {
     public class StocksModel
     {
+        public int Id { get; set; }
         public decimal GrowthRate { get; set; }
         public decimal Value { get; set; }
         public int CompanyId { get; set; }
