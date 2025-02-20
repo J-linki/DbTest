@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace DbTest.Configurations
+namespace DbTest.Data.Configurations
 {
     public class UserConfig : IEntityTypeConfiguration<UserModel>
     {

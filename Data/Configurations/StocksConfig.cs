@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using DbTest.Models;
 
-namespace DbTest.Configurations
+namespace DbTest.Data.Configurations
 {
     public class StocksConfig : IEntityTypeConfiguration<StocksModel>
     {
