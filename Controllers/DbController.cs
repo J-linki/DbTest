@@ -57,10 +57,16 @@ namespace DbTest.Controllers
             return Ok("Stock Added");
         }
 
+        private async Task<bool> CompanyExists(string companyName)
+        {
+            return await _context.Companys.AnyAsync(c => c.Name == companyName);
+        }
         
         [HttpPut("/AddCompany")]
         public async Task<IActionResult> AddCompany(string name, decimal marketValue = 0)
         {
+            if (await CompanyExists(name)) return BadRequest(name);
+
             var Company = new CompanyModel { Name = name, MarketValue = marketValue };
             
             await _context.AddAsync(Company);
@@ -80,11 +86,15 @@ namespace DbTest.Controllers
 
                 if (user is null) return BadRequest("User not found");
 
+                HashSet<StocksModel>? stocksOfCompany =  new HashSet<StocksModel>(_context.Stocks.Where(s => s.Company.Name == companyName).Select(s => s));
 
-                //TODO: only give one stock
-                await _context.Stocks.Where(s => s.Company.Name == companyName)
-                                     .ExecuteUpdateAsync(s => s
-                                     .SetProperty(s => s.UserId, s => user.Id));
+                if (stocksOfCompany.Count() == 0) return BadRequest("No stocks found");
+
+                StocksModel? firstUnownedStock = stocksOfCompany.FirstOrDefault(s => s.UserId == null);
+
+                if (firstUnownedStock is null) return BadRequest("No stocks found");
+
+                user.Stocks!.Add(firstUnownedStock);
 
                 await _context.SaveChangesAsync();
 
