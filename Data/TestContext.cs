@@ -6,8 +6,8 @@ namespace DbTest.Data
 {
     public class TestContext : DbContext
     {
-        public TestContext(DbContextOptions<TestContext> options): base(options) 
-        { }
+        //public TestContext(DbContextOptions<TestContext> options): base(options) 
+        //{ }
         public DbSet<UserModel>? Users { get; set; }
 
         public DbSet<StocksModel> Stocks {  get; set; }

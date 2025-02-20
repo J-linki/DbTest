@@ -15,12 +15,14 @@ namespace DbTest.Configurations
             builder.HasOne(s => s.Company)
                    .WithMany(c => c.Stocks)
                    .HasForeignKey(s => s.CompanyId)
-                   .HasPrincipalKey(c => c.Id);
+                   .HasPrincipalKey(c => c.Id)
+                   .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasOne(s => s.User)
                    .WithMany(u => u.Stocks)
                    .HasForeignKey(s => s.UserId)
-                   .HasPrincipalKey(u => u.Id);
+                   .HasPrincipalKey(u => u.Id)
+                   .OnDelete(DeleteBehavior.SetNull);
         }
     }
 }
