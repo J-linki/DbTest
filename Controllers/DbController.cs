@@ -129,7 +129,7 @@ namespace DbTest.Controllers
 
             await _context.SaveChangesAsync();
 
-            return Ok("User removed");
+            return Ok("Company removed");
         }
         
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
